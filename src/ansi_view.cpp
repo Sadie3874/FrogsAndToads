@@ -63,9 +63,16 @@ namespace FrogToad {
 		}
 		std::cout << "\n\n";
 
+		
+		
+
 		// Status line
 		if (model.isSolved()) {
 			std::cout << blue() << "Solved! R to restart.\n";
+		}
+		// lose statement 
+		else if (model.state() == BoardModel::GameState::Lost) {
+			std::cout << red() << "Lost :( Press R to restart.\n";
 		}
 		else {
 			std::cout << white() << "Choose a piece to move.\n\n";

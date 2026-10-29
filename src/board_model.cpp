@@ -8,18 +8,38 @@ namespace FrogToad {
     bool BoardModel::isSolved() const {
         return board == GoalBoard;
     }
+    
+
+    // i got really stuck here cause i new we needed the index to call and check the other options but didnt know how
+    bool BoardModel::canPlayerMove() const {
+        for (int i{ 0 }; i < BoardSize; i++) {
+            if (canMove(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     BoardModel::GameState BoardModel::state() const {
-        if (isSolved()) return GameState::Solved;
-
-        // TODO (student): Use canMove() to detect when no legal moves remain.
-        // Check for a solution first: the solved board also has no legal moves.
-        return GameState::Playing;
+        if (isSolved()) {
+            return GameState::Solved;
+        }
+        if (!canPlayerMove()) {
+            return GameState::Lost;
+        }
+        else {
+            return GameState::Playing;
+        }
     }
+
 
     bool BoardModel::canMove(int index) const {
         return moveDestination(index) != -1;
+
     }
+    // return false if move isnt valid
+
 
     BoardModel::Cell BoardModel::cellAt(int index) const {
         return isIndexValid(index) ? board[index] : Cell::Empty;

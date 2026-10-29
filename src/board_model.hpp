@@ -15,8 +15,12 @@ namespace FrogToad {
         /** @brief Reset to the starting configuration. */
         void reset();
 
+        bool canPlayerMove() const;
+
         /** @brief Return whether the board matches the goal. */
         bool isSolved() const;
+
+
 
         /** @brief Returns game state. Unsolved boards report Playing until loss detection is implemented. */
         GameState state() const;
